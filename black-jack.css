@@ -1,0 +1,67 @@
+body {
+  background-color: green;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+
+}
+button.start {
+  position: absolute;
+  top: 30%;
+}
+
+div.start {
+  text-align: center;
+}
+
+.card1 {
+  border-style: solid;
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  float: left;
+  top: 30%;
+}
+
+.card2 {
+  border-style: solid;
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  float: left;
+  top: 30%;
+  left: 20%;
+}
+
+.card3 {
+  border-style: solid;
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  float: left;
+  top: 70%;
+}
+
+.card4 {
+  border-style: solid;
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  float: left;
+  top: 70%;
+  left: 20%;
+}
+
+button.hit {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  }
+
+button.stand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

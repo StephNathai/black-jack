@@ -1,3 +1,4 @@
+**Note: I need to personalize this file to be my own words. I just copied this from online so I can make sure I follow the rules whilst making my project**
 
 Welcome to Black Jack!
 
