@@ -35,24 +35,13 @@ button.newGame {
   left: 20%;
 }
 
-.diamond {
-  background-image: url('./images/diamonds.png');
-}
-
-.spade {
-  background-image: url('//images/spades.png');
-}
-
 .playerSpot {
-  border-style: solid;
   position: absolute;
   width: 95%;
   height: 30%;
   float: left;
   top: 70%;
   margin: 1% auto;
-  border-color: blue;
-  border-style: solid;
   left: 2%;
 }
 
@@ -66,15 +55,12 @@ button.newGame {
 }
 
 .dealerSpot {
-  border-style: solid;
   position: absolute;
   width: 95%;
   height: 30%;
   float: left;
   top: 30%;
   margin: 1% auto;
-  border-color: blue;
-  border-style: solid;
   left: 2%;
 }
 
@@ -85,14 +71,4 @@ button.newGame {
   height: 100%;
   float: left;
   margin-right: 10px;
-}
-
-.hits{
-  width: 15%;
-  height: 30%;
-  float: left;
-  top: 70%;
-  left: 40%;
-  display:inline-block;
-
 }
