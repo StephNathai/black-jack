@@ -72,3 +72,19 @@ button.newGame {
   float: left;
   margin-right: 10px;
 }
+
+svg {
+  position: relative;
+}
+
+#heart {
+  transform: translate(-100px, 0px);
+}
+
+#diamond {
+  transform: translate(0px, -100px);
+}
+
+#club {
+  transform: translate(-100px, -100px);
+}

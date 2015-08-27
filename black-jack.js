@@ -12,6 +12,7 @@ $('.start').on('click', function(){
 
 $('.newGame').on('click', function(){
   clearBoard();
+
   dealCards();
 });
 
