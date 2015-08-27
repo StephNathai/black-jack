@@ -6,7 +6,11 @@ $(function(){
 
 $('.start').on('click', function(){
   $(this).remove();
+  clearBoard();
   dealCards();
+    // $('.hit').on('click', function(){
+    //   hit();
+    // });
 });
 
 $('.newGame').on('click', function(){
@@ -14,20 +18,23 @@ $('.newGame').on('click', function(){
   dealCards();
 });
 
+$('.hit').on('click', function(){
+  hit();
+});
 
-//overall deck
-var deck = [];
+
+
 //this represents 1 deck of cards for shoe;
-var shoeDeck = [];
-//this represents 1 deck of cards for players
-var playerDeck = [];
-//this represents 1 deck of cards for dealer
-var dealerDeck = [];
-
-for(var i=0; i<52; i++) {
-  deck.push(i); //push to deck
+var deck = [];
+ for(var i=0; i<52; i++) {
+  deck.push(i)
 };
 
+
+//this represents empty array for playerHand
+var playerHand = [];
+//this represents empty array for dealerHand
+var dealerHand = [];
 
 var newCard;
 
@@ -40,21 +47,31 @@ function drawNewCard() {
   return card;
 }
 
-
-
 function dealCards() {
-  setTimeout(function(){
-    $('.playerCard1').append(drawNewCard);//adds new card from deck to player 1 card div
-    setTimeout(function(){
-      $('.dealerCard1').append(drawNewCard);
-      setTimeout(function(){
-        $('.playerCard2').append(drawNewCard);
-        setTimeout(function(){
-          $('.dealerCard2').append(drawNewCard);
-        }, 1000);
-      }, 1000);
-    }, 1000);
-  }, 1000);
+  // setTimeout(function(){
+    var cardDiv = $('<div class="playerCard"></div>');
+    $(cardDiv).append(drawNewCard);
+    $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
+    //playerHand.push(cardDiv);
+  // // }, 2000);
+  // // setTimeout(function(){
+  //     var cardDiv = $('<div></div>');
+  //     $(cardDiv).append(drawNewCard)
+  //     $('.dealerCard1').append(cardDiv);
+  //     dealerHand.push(cardDiv);
+  // // }, 2000);
+  // // setTimeout(function(){
+  //       var cardDiv = $('<div class="playerCard"></div>')
+  //       $(cardDiv).append(drawNewCard)
+  //       $('.playerSpot').append(cardDiv);
+  //       playerHand.push(cardDiv);
+  // // }, 3000);
+  // // setTimeout(function(){
+  //         var cardDiv = $('<div></div>')
+  //         $(cardDiv).append(drawNewCard)
+  //         $('.dealerCard2').append(cardDiv);
+  //         dealerHand.push(cardDiv);
+  // // }, 4000);
 };
 
 //function to shuffle an array
@@ -110,9 +127,17 @@ function clearBoard(){
   $('.dealerCard1').html("");
   $('.playerCard2').html("");
   $('.dealerCard2').html("");
-
+  $('.hitCards').remove();
 };
 
+function hit(){
+    var cardDiv = $('<div></div>')
+    $(cardDiv).append(drawNewCard())
+    $(cardDiv).addClass('playerCard');
+    $('.playerSpot').append(cardDiv);
+    playerHand.push(cardDiv);
+
+};
 
 
 
