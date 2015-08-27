@@ -80,7 +80,7 @@ svg {
 }
 
 #heart {
-  transform: translate(-100px, 30px) scale(1);
+  transform: translate(-100px, 30px);
 }
 
 #diamond {

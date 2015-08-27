@@ -17,7 +17,11 @@ $('.newGame').on('click', function(){
 });
 
 $('.hit').on('click', function(){
-  hit();
+  var cardDiv = $('<div class="playerCard"></div>');
+  $(cardDiv).append(drawNewCard())
+  $('.playerSpot').append(cardDiv);
+  playerHand.push(cardDiv);
+  $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 });
 
 //this represents 1 deck of cards for shoe;
@@ -42,46 +46,33 @@ function drawNewCard() {
   return newCard;
 }
 
-
-
-// function drawNewCard() {
-//   var deckShuffled = shuffle(deck);
-//   newCard = deckShuffled.pop();
-//   var cardSuit = findSuit(newCard);
-//   cardValue = findValue(newCard);
-//   var card = (findValue(newCard) + " of " + findSuit(newCard))
-//   return card;
-// }
-
-
-
 function dealCards() {
   // setTimeout(function(){
-    var cardDiv = $('<div class="playerCard"></div>');
-    $(cardDiv).append(drawNewCard);
-    $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
-    playerHand.push(cardDiv);
+  var cardDiv = $('<div class="playerCard"></div>');
+  $(cardDiv).append(drawNewCard);
+  $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
+  playerHand.push(cardDiv);
   // }, 2000);
   // setTimeout(function(){
-    var cardDiv = $('<div class="dealerCard"></div>');
-    $(cardDiv).append(drawNewCard);
-    $('.dealerSpot').append(cardDiv);
-    dealerHand.push(cardDiv);
+  var cardDiv = $('<div class="dealerCard"></div>');
+  $(cardDiv).append(drawNewCard);
+  $('.dealerSpot').append(cardDiv);
+  dealerHand.push(cardDiv);
   // }, 2000);
   // setTimeout(function(){
-    var cardDiv = $('<div class="playerCard"></div>');
-    $(cardDiv).append(drawNewCard);
-    $('.playerSpot').append(cardDiv);
-    playerHand.push(cardDiv);
-    console.log(playerHand);
-    $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })
+  var cardDiv = $('<div class="playerCard"></div>');
+  $(cardDiv).append(drawNewCard);
+  $('.playerSpot').append(cardDiv);
+  playerHand.push(cardDiv);
+  console.log(playerHand);
+  $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 3000);
   // setTimeout(function(){
-    var cardDiv = $('<div class="dealerCard"></div>');
-    $(cardDiv).append(drawNewCard);
-    $('.dealerSpot').append(cardDiv);
-    dealerHand.push(cardDiv);
-    $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })
+  var cardDiv = $('<div class="dealerCard"></div>');
+  $(cardDiv).append(drawNewCard);
+  $('.dealerSpot').append(cardDiv);
+  dealerHand.push(cardDiv);
+  $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
 };
 
@@ -152,11 +143,7 @@ function clearBoard(){
 };
 
 function hit(){
-  var cardDiv = $('<div class="playerCard"></div>');
-  $(cardDiv).append(drawNewCard)
-  $('.playerSpot').append(cardDiv);
-  playerHand.push(cardDiv);
-  $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })
+
 
 };
 
