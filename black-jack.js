@@ -4,43 +4,58 @@ $(function(){
 //
 // var howManyPlayers = prompt("How many players are playing?")
 
-// $('.start').on('click', function(){
-//   $(this).remove();
-//   newGame();
-//
-// });
+$('.start').on('click', function(){
+  $(this).remove();
+  dealCards();
+});
 
-  var deck = []; //overall deck
-  for(var i=0; i<52; i++) {
-    deck.push(i); //push to deck
-  };
-  //this represents 1 deck of cards for shoe;
-  var shoeDeck = [];
-
-  //this represents 1 deck of cards for players
-  var playerDeck = [];
-
-  //this represents 1 deck of cards for dealer
-  var dealerDeck = [];
+$('.newGame').on('click', function(){
+  clearBoard();
+  dealCards();
+});
 
 
+//overall deck
+var deck = [];
+//this represents 1 deck of cards for shoe;
+var shoeDeck = [];
+//this represents 1 deck of cards for players
+var playerDeck = [];
+//this represents 1 deck of cards for dealer
+var dealerDeck = [];
 
-  var deckShuffled = shuffle(deck);
-  var newCard;
+for(var i=0; i<52; i++) {
+  deck.push(i); //push to deck
+};
+
+
+var newCard;
 
 function drawNewCard() {
+  var deckShuffled = shuffle(deck);
   newCard = deckShuffled.pop();
   var cardSuit = findSuit(newCard);
   var cardValue = findValue(newCard);
   var card = (findValue(newCard) + " of " + findSuit(newCard))
-  console.log(card);
-
+  return card;
 }
-drawNewCard();
 
 
-//  $('.divcard1').text() = card;
 
+function dealCards() {
+  setTimeout(function(){
+    $('.playerCard1').append(drawNewCard);//adds new card from deck to player 1 card div
+    setTimeout(function(){
+      $('.dealerCard1').append(drawNewCard);
+      setTimeout(function(){
+        $('.playerCard2').append(drawNewCard);
+        setTimeout(function(){
+          $('.dealerCard2').append(drawNewCard);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  }, 1000);
+};
 
 //function to shuffle an array
 function shuffle(o){
@@ -83,13 +98,20 @@ function findValue() {
     return jack;
   } else if (value === 12) {
     return queen;
-  } else if (value === 13){
+  } else if (value === 0){
     return king;
   } else {
     return value;
   }
 };
 
+function clearBoard(){
+  $('.playerCard1').html("");
+  $('.dealerCard1').html("");
+  $('.playerCard2').html("");
+  $('.dealerCard2').html("");
+
+};
 
 
 

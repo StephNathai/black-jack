@@ -16,7 +16,7 @@ div.start {
   text-align: center;
 }
 
-.card1 {
+.dealerCard1 {
   border-style: solid;
   position: absolute;
   width: 15%;
@@ -25,7 +25,7 @@ div.start {
   top: 30%;
 }
 
-.card2 {
+.dealerCard2 {
   border-style: solid;
   position: absolute;
   width: 15%;
@@ -35,7 +35,7 @@ div.start {
   left: 20%;
 }
 
-.card3 {
+.playerCard1 {
   border-style: solid;
   position: absolute;
   width: 15%;
@@ -44,7 +44,7 @@ div.start {
   top: 70%;
 }
 
-.card4 {
+.playerCard2 {
   border-style: solid;
   position: absolute;
   width: 15%;
@@ -58,10 +58,24 @@ button.hit {
   position: absolute;
   top: 40%;
   left: 50%;
-  }
+}
 
 button.stand {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+button.newGame {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+}
+
+.diamond {
+  background-image: url('./images/diamonds.png');
+}
+
+.spade {
+  background-image: url('//images/spades.png');
 }
