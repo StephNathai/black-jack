@@ -109,7 +109,6 @@ function findSuit(newCard){
   } else {
     return spades;
   };
-//transform
 
 };
 
@@ -138,6 +137,18 @@ function findValue(newCard) {
 function clearBoard(){
   $('.playerSpot').empty();
   $('.dealerSpot').empty();
+
+  //this represents 1 deck of cards for shoe;
+  deck = [];
+   for(var i=0; i<52; i++) {
+    deck.push(i)
+  };
+
+  //this represents empty array for playerHand
+  playerHand = [];
+  //this represents empty array for dealerHand
+  dealerHand = [];
+
 };
 
 function hit(){
