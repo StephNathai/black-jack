@@ -9,62 +9,30 @@ h1 {
 }
 button.start {
   position: absolute;
-  top: 30%;
-  left: 80%;
+  top: 10%;
+  left: 20%;
 }
 
 div.start {
   text-align: center;
 }
 
-.dealerCard2 {
-  border-style: solid;
-  position: absolute;
-  width: 15%;
-  height: 30%;
-  float: left;
-  top: 30%;
-  left: 20%;
-}
-
-.hits{
-  width: 15%;
-  height: 30%;
-  float: left;
-  top: 70%;
-  left: 40%;
-  display:inline-block;
-
-}
-
-.playerHitCard {
-  border-style: dashed;
-  position: absolute;
-  width: 15%;
-  height: 30%;
-  float: left;
-  top: 70%;
-  left: 40%;
-  display:inline-block;
-
-}
-
 button.hit {
   position: absolute;
-  top: 40%;
+  top: 10%;
   left: 80%;
 }
 
 button.stand {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 80%;
 }
 
 button.newGame {
   position: absolute;
-  top: 60%;
-  left: 80%;
+  top: 20%;
+  left: 20%;
 }
 
 .diamond {
@@ -95,4 +63,36 @@ button.newGame {
   height: 100%;
   float: left;
   margin-right: 10px;
+}
+
+.dealerSpot {
+  border-style: solid;
+  position: absolute;
+  width: 95%;
+  height: 30%;
+  float: left;
+  top: 30%;
+  margin: 1% auto;
+  border-color: blue;
+  border-style: solid;
+  left: 2%;
+}
+
+.dealerCard {
+  border-style: solid;
+  position: relative;
+  width: 15%;
+  height: 100%;
+  float: left;
+  margin-right: 10px;
+}
+
+.hits{
+  width: 15%;
+  height: 30%;
+  float: left;
+  top: 70%;
+  left: 40%;
+  display:inline-block;
+
 }

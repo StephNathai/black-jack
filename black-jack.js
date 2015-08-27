@@ -52,25 +52,25 @@ function dealCards() {
     var cardDiv = $('<div class="playerCard"></div>');
     $(cardDiv).append(drawNewCard);
     $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
-    //playerHand.push(cardDiv);
+    playerHand.push(cardDiv);
   // // }, 2000);
   // // setTimeout(function(){
-  //     var cardDiv = $('<div></div>');
-  //     $(cardDiv).append(drawNewCard)
-  //     $('.dealerCard1').append(cardDiv);
-  //     dealerHand.push(cardDiv);
+      var cardDiv = $('<div class="dealerCard"></div>');
+      $(cardDiv).append(drawNewCard)
+      $('.dealerSpot').append(cardDiv);
+      dealerHand.push(cardDiv);
   // // }, 2000);
   // // setTimeout(function(){
-  //       var cardDiv = $('<div class="playerCard"></div>')
-  //       $(cardDiv).append(drawNewCard)
-  //       $('.playerSpot').append(cardDiv);
-  //       playerHand.push(cardDiv);
+        var cardDiv = $('<div class="playerCard"></div>')
+        $(cardDiv).append(drawNewCard)
+        $('.playerSpot').append(cardDiv);
+        playerHand.push(cardDiv);
   // // }, 3000);
   // // setTimeout(function(){
-  //         var cardDiv = $('<div></div>')
-  //         $(cardDiv).append(drawNewCard)
-  //         $('.dealerCard2').append(cardDiv);
-  //         dealerHand.push(cardDiv);
+          var cardDiv = $('<div class="dealerCard"></div>')
+          $(cardDiv).append(drawNewCard)
+          $('.dealerSpot').append(cardDiv);
+          dealerHand.push(cardDiv);
   // // }, 4000);
 };
 
@@ -123,11 +123,8 @@ function findValue() {
 };
 
 function clearBoard(){
-  $('.playerCard1').html("");
-  $('.dealerCard1').html("");
-  $('.playerCard2').html("");
-  $('.dealerCard2').html("");
-  $('.hitCards').remove();
+  $('.playerSpot').empty();
+  $('.dealerSpot').empty();
 };
 
 function hit(){
