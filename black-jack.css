@@ -75,16 +75,26 @@ button.newGame {
 
 svg {
   position: relative;
+  width: 100px;
+  height: 120px;
 }
 
 #heart {
-  transform: translate(-100px, 0px);
+  transform: translate(-100px, 30px) scale(1);
 }
 
 #diamond {
-  transform: translate(0px, -100px);
+  transform: translate(0px, -80px);
 }
 
 #club {
-  transform: translate(-100px, -100px);
+  transform: translate(-100px, -80px);
+}
+
+#spade {
+  transform: translate(0px, 20px);
+}
+
+.cardNumber{
+  transform: translate(5px, 20px);
 }

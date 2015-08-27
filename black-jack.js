@@ -38,7 +38,7 @@ function drawNewCard() {
   var cardSuit = findSuit(cardId);
   var cardValue = findValue(cardId);
   newCard.append(cardSuit);
-  newCard.append($('<text></text>').text(cardValue));
+  newCard.append($('<text class="cardNumber"></text>').text(cardValue));
   return newCard;
 }
 
