@@ -6,13 +6,12 @@ $(function(){
 
 $('.start').on('click', function(){
   $(this).remove();
+  $('.hidden').fadeIn("slow");
   clearBoard();
-  //dealCards();
 });
 
 $('.newGame').on('click', function(){
   clearBoard();
-  //dealCards();
 });
 
 $('.hit').on('click', function(){
@@ -24,10 +23,9 @@ $('.hit').on('click', function(){
 });
 
 $('.stand').on('click', function(){
-  $('.dealerCard').eq(0).show();//shows hidden dealer card 
+  $('.dealerCard').eq(0).show();//shows hidden dealer card
+});
 
-
-})
 
 var playerHand;
 var dealerHand;

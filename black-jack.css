@@ -116,4 +116,7 @@ th, td {
   text-align: center;
   height: 50%;
 }
+
+.hidden {
+  display: none;
 }
