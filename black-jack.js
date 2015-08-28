@@ -23,6 +23,12 @@ $('.hit').on('click', function(){
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 });
 
+$('.stand').on('click', function(){
+  $('.dealerCard').eq(0).show();
+
+
+})
+
 var playerHand;
 var dealerHand;
 var deck;
@@ -85,6 +91,8 @@ function dealCards() {
   console.log("dealerHand " + dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
+
+
 };
 
 //function to shuffle an array
@@ -137,13 +145,13 @@ function findValue(newCard) {
 };
 
 
-function scores() {
-  for(var i =0; i<playerHand.length; i++){
-    console.log([i]);
-  }
-}
-
-scores();
+// function scores() {
+//   for(var i =0; i<playerHand.length; i++){
+//     console.log([i]);
+//   }
+// }
+//
+// scores();
 
 
 

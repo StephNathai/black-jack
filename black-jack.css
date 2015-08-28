@@ -5,34 +5,31 @@ body {
 h1 {
   text-align: center;
   color: white;
+  text-decoration: underline;
 
 }
 button.start {
   position: absolute;
-  top: 10%;
-  left: 20%;
-}
-
-div.start {
-  text-align: center;
+  top: 5%;
+  left: 2%;
 }
 
 button.hit {
   position: absolute;
-  top: 10%;
-  left: 80%;
+  top: 5%;
+  left: 15%;
 }
 
 button.stand {
   position: absolute;
-  top: 20%;
-  left: 80%;
+  top: 12%;
+  left: 15%;
 }
 
 button.newGame {
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 12%;
+  left: 2%;
 }
 
 .playerSpot {
@@ -97,4 +94,26 @@ svg {
 
 .cardNumber{
   transform: translate(5px, 20px);
+}
+
+div.dealerCard:nth-child(1) {
+  display: none;
+}
+
+table {
+  border-style: outset;
+  position: absolute;
+  float: right;
+  right:1%;
+  width: 20%;
+  height: 70px;
+  top: 5%;
+}
+
+th, td {
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+  height: 50%;
+}
 }
