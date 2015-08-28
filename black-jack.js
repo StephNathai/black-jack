@@ -23,6 +23,9 @@ $('.hit').on('click', function(){
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 });
 
+var playerHand;
+var dealerHand;
+var deck;
 
 function clearBoard(){
   $('.playerSpot').empty();
@@ -56,19 +59,19 @@ function drawNewCard() {
 function dealCards() {
   // setTimeout(function(){
   var cardDiv = $('<div class="playerCard"></div>');
-  $(cardDiv).append(drawNewCard);
+  $(cardDiv).append(drawNewCard());
   $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
   playerHand.push(cardDiv.text());
   // }, 2000);
   // setTimeout(function(){
   var cardDiv = $('<div class="dealerCard"></div>');
-  $(cardDiv).append(drawNewCard);
+  $(cardDiv).append(drawNewCard());
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
   // }, 2000);
   // setTimeout(function(){
   var cardDiv = $('<div class="playerCard"></div>');
-  $(cardDiv).append(drawNewCard);
+  $(cardDiv).append(drawNewCard());
   $('.playerSpot').append(cardDiv);
   playerHand.push(cardDiv.text());
   console.log(playerHand);
@@ -76,7 +79,7 @@ function dealCards() {
   // }, 3000);
   // setTimeout(function(){
   var cardDiv = $('<div class="dealerCard"></div>');
-  $(cardDiv).append(drawNewCard);
+  $(cardDiv).append(drawNewCard());
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
   console.log("dealerHand " + dealerHand);
@@ -134,7 +137,13 @@ function findValue(newCard) {
 };
 
 
+function scores() {
+  for(var i =0; i<playerHand.length; i++){
+    console.log([i]);
+  }
+}
 
+scores();
 
 
 
