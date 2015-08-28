@@ -20,10 +20,14 @@ $('.hit').on('click', function(){
   $('.playerSpot').append(cardDiv);
   playerHand.push(cardDiv.text());
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
+
 });
 
 $('.stand').on('click', function(){
   $('.dealerCard').eq(0).show();//shows hidden dealer card
+
+//scores();
+
 });
 
 
@@ -78,7 +82,7 @@ function dealCards() {
   $(cardDiv).append(drawNewCard());
   $('.playerSpot').append(cardDiv);
   playerHand.push(cardDiv.text());
-  console.log(playerHand);
+  //console.log(playerHand);
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 3000);
   // setTimeout(function(){
@@ -86,7 +90,7 @@ function dealCards() {
   $(cardDiv).append(drawNewCard());
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
-  console.log(dealerHand);
+  //console.log(dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
 
@@ -106,9 +110,10 @@ function findSuit(newCard){
   var diamonds = $('<path d="M39.419,107.322 C29.928,122.904 19.033,137.607 7.076,151.385 C19.044,165.157 30.124,179.822 39.419,195.541 C48.715,179.822 59.794,165.157 71.763,151.385 C59.806,137.607 48.911,122.904 39.419,107.322 z" fill="#D40000" id="diamond"/>');
   var clubs = $('<path d="M151.143,108.151 C145.612,108.151 140.979,110.01 137.206,113.713 C133.432,117.416 131.549,121.823 131.549,126.932 C131.549,131.104 133.159,135.463 136.393,140.057 C133.591,137.722 130.798,136.338 125.487,136.338 C115.096,136.338 107.643,144.868 107.643,155.526 C107.643,166.827 115.891,175.432 126.893,175.432 C137.909,175.432 146.175,167.918 150.237,158.776 C150.049,166.229 148.917,172.127 146.831,176.463 C144.745,180.799 141.549,184.385 137.237,187.244 C134.331,189.166 129.096,190.854 121.549,192.307 L120.987,194.713 L151.143,194.713 L181.331,194.713 L180.768,192.307 C173.221,190.854 167.987,189.166 165.081,187.244 C160.768,184.385 157.573,180.799 155.487,176.463 C153.401,172.127 152.268,166.229 152.081,158.776 C156.143,167.918 164.409,175.432 175.424,175.432 C186.427,175.432 194.674,166.827 194.674,155.526 C194.674,144.868 187.222,136.338 176.831,136.338 C171.52,136.338 168.726,137.722 165.924,140.057 C169.159,135.463 170.768,131.104 170.768,126.932 C170.768,121.823 168.885,117.416 165.112,113.713 C161.338,110.01 156.674,108.151 151.143,108.151 z" fill="#000000" id="club"/>');
   var spades = $('<path d="M39.419,4.459 C38.201,9.521 36.326,14.068 33.794,18.053 C31.263,22.037 26.755,26.951 20.263,32.834 C13.771,38.717 9.654,43.224 7.919,46.365 C6.185,49.506 5.326,52.693 5.326,55.928 C5.326,60.428 6.826,64.178 9.826,67.178 C12.826,70.178 16.482,71.678 20.794,71.678 C28.514,71.678 34.485,66.041 38.419,59.896 C38.12,66.615 37.013,71.993 35.076,76.021 C32.99,80.357 29.796,83.945 25.482,86.803 C22.577,88.726 17.341,90.412 9.794,91.865 L9.232,94.271 L39.388,94.271 L69.576,94.271 L69.013,91.865 C61.466,90.412 56.23,88.726 53.326,86.803 C49.012,83.945 45.818,80.357 43.732,76.021 C41.797,71.999 40.689,66.632 40.388,59.928 C44.322,66.063 50.334,71.678 58.044,71.678 C62.357,71.678 66.013,70.178 69.013,67.178 C72.013,64.178 73.513,60.428 73.513,55.928 C73.513,52.693 72.654,49.506 70.919,46.365 C69.185,43.224 65.068,38.717 58.576,32.834 C52.083,26.951 47.576,22.037 45.044,18.053 C42.513,14.068 40.638,9.521 39.419,4.459 z" fill="#000000" id="spade"/>');
-
+  //var buffer = $('<g></g>').css('transform','scale(.2)');
   if (suit === 0){
     return hearts;
+    //return $(buffer).append(hearts);
   } else if (suit === 1) {
     return diamonds;
   } else if (suit === 2) {
@@ -122,6 +127,7 @@ function findSuit(newCard){
 //function to determine the card suit
 function findValue(newCard) {
   var value = (newCard % 13);
+  var sum = 0;
 
   var ace = "A";
   var jack = "J";
@@ -130,27 +136,47 @@ function findValue(newCard) {
 
   if (value === 1){
     return ace;
+    return sum = sum + 1;
   } else if (value === 11) {
     return jack;
+    return sum = sum + 10;
   } else if (value === 12) {
     return queen;
+    return sum = sum + 10;
   } else if (value === 0){
     return king;
+    return sum = sum + 10;
   } else {
     return value;
+    return sum = sum + value;
   }
+  console.log(sum);
 };
 
 
 function scores() {
-  playerHand = $(playerHand);
+  var sum = 0;
+
   for(var i =0; i<playerHand.length; i++){
   }
-  console.log([i].text());
-}
-scores();
+   if(playerHand[i] === "J") {
+    return sum = sum + 10;
+  } else if (playerHand[i] === "Q") {
+      return sum = sum + 10;
+  } else if (playerHand[i]  === "K") {
+      return sum = sum + 10;
+  } else if (playerHand[i] === "A") {
+      return sum = sum + 1;
+  } else {
+  return sum = sum + parseInt(playerHand[i]);
+  }
+
+console.log(Object.keys(playerHand));
+
+$('.dealer-current-score-box').append(sum.text());
 
 
+};
 
 
 
