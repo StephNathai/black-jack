@@ -3,8 +3,6 @@
 <head>
   <title>Black Jack!</title>
   <link rel="stylesheet" type="text/css" href="black-jack.css"/>
-  <script type ="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="black-jack.js"></script>
 </head>
 <body>
   <h1>Let's Play Black Jack!</h1>
@@ -15,12 +13,20 @@
   <div class="dealerSpot"></div>
   <div class ="playerSpot"></div>
   <table>
+      <th>Score</th>
       <th>Dealer</th>
       <th>Player</th>
         <tr>
-          <td class="dealerScoreBox"></td>
-          <td class="playerScoreBox"></td>
+          <td>Current Game</td>
+          <td class="dealer-current-score-box"></td>
+          <td class="player-current-score-box"></td>
         </tr>
+        <tr>
+          <td>Overall Scores</td>
+          <td class="dealer-overall-score-box"></td>
+          <td class="player-overall-score-box"></td>
   </table>
+  <script type ="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="black-jack.js"></script>
 </body>
 </html>

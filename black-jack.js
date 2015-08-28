@@ -1,4 +1,4 @@
-$(function(){
+//$(function(){
 
 // alert("Welcome to Black Jack!"); // alert to introduce game
 //
@@ -18,7 +18,7 @@ $('.hit').on('click', function(){
   var cardDiv = $('<div class="playerCard"></div>');
   $(cardDiv).append(drawNewCard())
   $('.playerSpot').append(cardDiv);
-  playerHand.push(cardDiv);
+  playerHand.push(cardDiv.text());
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 });
 
@@ -86,10 +86,9 @@ function dealCards() {
   $(cardDiv).append(drawNewCard());
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
-  console.log("dealerHand " + dealerHand);
+  console.log(dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
-
 
 };
 
@@ -143,13 +142,13 @@ function findValue(newCard) {
 };
 
 
-// function scores() {
-//   for(var i =0; i<playerHand.length; i++){
-//     console.log([i]);
-//   }
-// }
-//
-// scores();
+function scores() {
+  playerHand = $(playerHand);
+  for(var i =0; i<playerHand.length; i++){
+  }
+  console.log([i].text());
+}
+scores();
 
 
 
@@ -161,4 +160,4 @@ function findValue(newCard) {
 
 
 
-});
+//});
