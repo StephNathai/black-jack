@@ -24,7 +24,7 @@ $('.hit').on('click', function(){
 });
 
 $('.stand').on('click', function(){
-  $('.dealerCard').eq(0).show();
+  $('.dealerCard').eq(0).show();//shows hidden dealer card 
 
 
 })
