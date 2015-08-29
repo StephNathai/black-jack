@@ -21,7 +21,6 @@ $('.hit').on('click', function(){
 $('.stand').on('click', function(){
   $('.dealerCard').eq(0).show();//shows hidden dealer card
   playerScore();
-  dealerScore();
 });
 
 var playerHand;
@@ -194,7 +193,15 @@ function playerScore() {
   $.each(playerValue, function(){
     playerSum += this;
   });
+
+  if (playerSum === 21) {
+    playerSum = "BlackJack!";
+  } else if (playerSum > 21) {
+    playerSum = "Busted!";
+  }
   $('.player-current-score-box').append(playerSum);
+
+dealerScore();
 };
 
 function dealerScore(){
@@ -202,9 +209,17 @@ function dealerScore(){
   $.each(dealerValue, function(){
     dealerSum += this;
   });
+  if (dealerSum === 21) {
+    dealerSum = "BlackJack!";
+  } else if (dealerSum > 21) {
+    dealerSum = "Busted!";
+  }
   $('.dealer-current-score-box').append(dealerSum);
 };
 
+// function winner() {
+//
+// }
 
 //};
 
