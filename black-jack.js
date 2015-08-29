@@ -20,20 +20,14 @@ $('.hit').on('click', function(){
 
 $('.stand').on('click', function(){
   $('.dealerCard').eq(0).show();//shows hidden dealer card
-  $('.dealer-current-score-box').append(dealerValue);
-  $('.player-current-score-box').append(playerValue);
-
-//scores();
-
-setTimeout(function() {clearBoard();
-},2000);
+  playerScore();
+  dealerScore();
 });
 
 var playerHand;
 var dealerHand;
 var deck;
-var playerScore;
-var dealerScore;
+
 
 function clearBoard(){
   $('.playerSpot').empty();
@@ -45,11 +39,8 @@ function clearBoard(){
   playerHand = [];
   //this represents empty array for dealerHand
   dealerHand = [];
-
-  var playerScore = [];
-  var dealerScore = [];
-  var playerValue = [];
-  var dealerValue = [];
+  playerValue = [];
+  dealerValue = [];
 
   //this represents 1 deck of cards for shoe;
   deck = [];
@@ -81,9 +72,6 @@ var sum = 0;
 //function to determine the card suit
 function findValue(newCard) {
   var value = (newCard % 13);
-
-
-
 
   var ace = "A";
   var jack = "J";
@@ -173,7 +161,6 @@ function dealCards() {
   // }, 4000);
 
 
-
 };
 
 function playerHit() {
@@ -202,23 +189,21 @@ function dealerHit() {
 
 
 
-// function scores() {
-//
-// var sum = 0
-// var playerHand = $(playerHand);
-//
-//   for(var i =0; i<playerHand.length; i++){
-//     if(playerHand[i] === "J" || "Q" || "K" || "A") {
-//       sum = sum + 10;
-//     } else if {
-//       sum = sum + parseInt(playerHand[i]);
-//     } else if (playerHand[i] === "A") {
-//       return sum = sum + 1;
-//     } else {
-//       return sum = sum + parseInt(playerHand[i]);
-//   }
-// };
+function playerScore() {
+  var playerSum = 0;
+  $.each(playerValue, function(){
+    playerSum += this;
+  });
+  $('.player-current-score-box').append(playerSum);
+};
 
+function dealerScore(){
+  var dealerSum = 0;
+  $.each(dealerValue, function(){
+    dealerSum += this;
+  });
+  $('.dealer-current-score-box').append(dealerSum);
+};
 
 
 //};
