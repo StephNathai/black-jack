@@ -21,6 +21,7 @@ $('.hit').on('click', function(){
 $('.stand').on('click', function(){
   $('.dealerCard').eq(0).show();//shows hidden dealer card
   playerScore();
+  dealerScore();
 });
 
 var playerHand;
@@ -159,21 +160,22 @@ function dealCards() {
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
 
-
+playerScore();
 };
 
 function playerHit() {
   var cardDiv = $('<div class="playerCard"></div>');
   $(cardDiv).append(drawNewCard());
   (playerValue).push(sum);
-  //console.log(sum);
   $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
   playerHand.push(cardDiv.text());
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 
+playerScore();
 };
 
 function dealerHit() {
+  var cardDiv = $('<div class="dealerCard"></div>');
   $(cardDiv).append(drawNewCard());
   (dealerValue).push(sum);
   //console.log(sum);
@@ -182,10 +184,8 @@ function dealerHit() {
   console.log(dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
 
+dealerScore();
 };
-
-
-
 
 
 function playerScore() {
@@ -195,13 +195,23 @@ function playerScore() {
   });
 
   if (playerSum === 21) {
-    playerSum = "BlackJack!";
+    playerSum = " BlackJack!";
+    alert("You have Blackjack!");
+    $('.player-current-score-box').empty();
+    $('.player-current-score-box').append(playerSum);
+    dealerScore();
+    $('.dealerCard').eq(0).show();//shows hidden dealer card
   } else if (playerSum > 21) {
-    playerSum = "Busted!";
+    playerSum = " Busted!";
+    alert("You busted");
+    $('.player-current-score-box').append(playerSum);
+    dealerScore();
+    $('.dealerCard').eq(0).show();//shows hidden dealer card
+  } else {
+    $('.player-current-score-box').empty();
+    $('.player-current-score-box').append(playerSum);
   }
-  $('.player-current-score-box').append(playerSum);
 
-dealerScore();
 };
 
 function dealerScore(){
@@ -209,19 +219,26 @@ function dealerScore(){
   $.each(dealerValue, function(){
     dealerSum += this;
   });
+
   if (dealerSum === 21) {
     dealerSum = "BlackJack!";
+    $('.dealer-current-score-box').empty();
+    $('.dealer-current-score-box').append(dealerSum);
   } else if (dealerSum > 21) {
     dealerSum = "Busted!";
+    $('.dealer-current-score-box').empty();
+    $('.dealer-current-score-box').append(dealerSum);
+  } else if (dealerSum < 17){
+    dealerHit();
+    $('.dealer-current-score-box').empty();
+    $('.dealer-current-score-box').append(dealerSum);
   }
-  $('.dealer-current-score-box').append(dealerSum);
 };
 
 // function winner() {
 //
 // }
 
-//};
 
 
 
