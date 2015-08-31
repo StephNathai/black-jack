@@ -11,33 +11,46 @@ h1 {
 button.start {
   position: absolute;
   top: 5%;
-  left: 2%;
+  left: 65%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-family: cursive;
+  font-size: 25px;
+  background-color: white;
 }
 
 button.hit {
   position: absolute;
-  top: 5%;
-  left: 15%;
+  top: 6%;
+  left: 11.5%;
+  width: 80px;
+  height: 30px;
 }
 
 button.stand {
   position: absolute;
-  top: 12%;
-  left: 15%;
+  top: 6%;
+  left: 21%;
+  width: 80px;
+  height: 30px;
 }
 
 button.newGame {
   position: absolute;
-  top: 12%;
+  top: 6%;
   left: 2%;
+  width: 80px;
+  height: 30px;
+
 }
 
 .playerSpot {
   position: absolute;
-  width: 95%;
+  width: 80%;
   height: 30%;
   float: left;
-  top: 65%;
+  top: 55%;
   margin: 1% auto;
   left: 2%;
 }
@@ -45,18 +58,20 @@ button.newGame {
 .playerCard {
   border-style: solid;
   position: relative;
-  width: 15%;
-  height: 100%;
+  width: 170px;
+  height: 255px;
   float: left;
   margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .dealerSpot {
   position: absolute;
-  width: 95%;
+  width: 80%;
   height: 30%;
   float: left;
-  top: 30%;
+  top: 20%;
   margin: 1% auto;
   left: 2%;
 }
@@ -64,60 +79,136 @@ button.newGame {
 .dealerCard {
   border-style: solid;
   position: relative;
-  width: 15%;
-  height: 100%;
+  width: 170px;
+  height: 255px;
   float: left;
   margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+.blank-card {
+  border-style: solid;
+  position: relative;
+  width: 170px;
+  height: 255px;
+  float: left;
+  margin-right: 10px;
+  content: url('http://cdn.shopify.com/s/files/1/0200/7616/products/back_3098132_1024x1024.png?v=1383058425');
+
 }
 
 svg {
-  position: relative;
-  width: 100px;
-  height: 120px;
+  position: absolute;
+  width: 170px;
+  height: 255px;
+  padding-top: 20px;
+  padding-left: 5px;
 }
 
 #heart {
   transform: translate(-100px, 30px);
+  top: 30%;
+  left: 20%;
 }
 
 #diamond {
   transform: translate(0px, -80px);
+  top: 30%;
+  left: 20%;
 }
 
 #club {
   transform: translate(-100px, -80px);
+  top: 30%;
+  left: 20%;
 }
 
 #spade {
   transform: translate(0px, 20px);
+  top: 30%;
+  left: 20%;
 }
 
 .cardNumber{
-  transform: translate(5px, 20px);
+  position: absolute;
+  transform: translate(10px, 30px);
+  color: green;
+  font-size: 40px;
+  top: 20%;
+  font-family: "Lucida Handwriting", sans-serif;
 }
 
-div.dealerCard:nth-child(1) {
-  display: none;
-}
-
-table {
+table.scoreboard {
   border-style: outset;
   position: absolute;
   float: right;
   right:1%;
-  width: 20%;
+  width: 25%;
   height: 70px;
-  top: 5%;
+  top: 3%;
   background-color: #4DB870;
 }
 
-th, td {
+th.scoreboard, td.scoreboard {
   border-style: solid;
   border-width: thin;
   text-align: center;
   height: 50%;
 }
 
+table.chips {
+  border-style: inset;
+  position: absolute;
+  float: center;
+  width: 30%;
+  height: 70px;
+  top: 3%;
+  background-color: #4DB870;
+  left: 33%;
+  border-radius: 10px;
+}
+
+td.chips {
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+  height: 23%;
+  border-radius: 10px;
+}
+
+td.blue {
+  background-color: blue;
+
+}
+
+td.red {
+  background-color: red;
+
+}
+td.yellow {
+  background-color: yellow;
+
+}
+
+td.purple {
+  background-color: purple;
+
+}
+
 .hidden {
-  display: none;
+  opacity: 0;
+}
+
+td.none {
+  border-style: none;
+
+}
+form {
+  position: absolute;
+  float: right;
+  right:1%;
+  width: 25%;
+
+  top: 20%;
+
 }

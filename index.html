@@ -3,28 +3,61 @@
 <head>
   <title>Blackjack!</title>
   <link rel="stylesheet" type="text/css" href="black-jack.css"/>
+  <audio id="shuffle-sound" preload="auto">
+    <source src="http://www.soundjay.com/misc/sounds/shuffling-cards-1.mp3"></source>
+  </audio>
+  <audio id="deal-card" preload="auto">
+      <source src="http://www.soundjay.com/misc/sounds/page-flip-02.mp3"></source>
+  </audio>
+  <audio id="applause" preload="auto">
+    <source src="../sounds/applause10.mp3"></source>
+</audio>
 </head>
 <body>
-  <h1>Let's Play Blackjack!</h1>
+  <table class = "chips">
+    <tr class = "chips"></tr>
+      <td class = "chips blue"></td>
+      <td class = "chips red"></td>
+      <td class = "chips yellow"></td>
+      <td class = "chips purple"></td>
+    <tr class = "chips"></tr>
+      <td class = "chips blue"></td>
+      <td class = "chips red"></td>
+      <td class = "chips yellow"></td>
+      <td class = "chips purple"></td>
+    <tr class = "chips"></tr>
+      <td class = "chips none"></td>
+      <td class = "chips red"></td>
+      <td class = "chips yellow"></td>
+      <td class = "chips none"></td>
+    <tr class = "chips"></tr>
+      <td class = "chips none"></td>
+      <td class = "chips none"></td>
+      <td class = "chips yellow"></td>
+      <td class = "chips none"></td>
+  <!--</table>
+  <form class = "bet">Bet: <input type="text" placeholder="Enter Bet Amount Here" class = "bet-amount"/>
+  </form>--->
+
   <button class="start">Start</button>
   <button class="hit hidden">Hit</button>
   <button class="stand hidden">Stand</button>
   <button class="newGame hidden">New Game</button>
   <div class="dealerSpot"></div>
   <div class ="playerSpot"></div>
-  <table>
-      <th>Score</th>
-      <th>Dealer</th>
-      <th>Player</th>
+  <table class = "scoreboard">
+      <th class = "scoreboard">Score</th>
+      <th class = "scoreboard">Dealer</th>
+      <th class = "scoreboard">Player</th>
         <tr>
-          <td>Current Game</td>
-          <td class="dealer-current-score-box"></td>
-          <td class="player-current-score-box"></td>
+          <td class = "scoreboard">Current Game</td>
+          <td class="dealer-current-score-box scoreboard"></td>
+          <td class="player-current-score-box scoreboard"></td>
         </tr>
         <tr>
-          <td>Overall Scores</td>
-          <td class="dealer-overall-score-box"></td>
-          <td class="player-overall-score-box"></td>
+          <td class = "scoreboard">Total Money</td>
+          <td class="dealer-overall-score-box scoreboard"></td>
+          <td class="player-overall-score-box scoreboard"></td>
   </table>
   <script type ="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="black-jack.js"></script>

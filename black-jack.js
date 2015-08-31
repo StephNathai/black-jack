@@ -4,9 +4,14 @@
 //
 // var howManyPlayers = prompt("How many players are playing?")
 
+var audioShuffle = $("#shuffle-sound")[0];
+var audioDeal = $("#deal-card")[0];
+var audioApplause = $("#applause")[0];
+
 $('.start').on('click', function(){
+  audioShuffle.play();
   $(this).remove();
-  $('.hidden').fadeIn("slow");
+  $('.hidden').animate({opacity: 1});
   clearBoard();
 });
 
@@ -15,14 +20,24 @@ $('.newGame').on('click', function(){
 });
 
 $('.hit').on('click', function(){
+  audioDeal.play();
   playerHit();
 });
 
 $('.stand').on('click', function(){
-  $('.dealerCard').eq(0).show();//shows hidden dealer card
+  $('.dealerCard').removeClass('blank-card');
   playerScore();
   dealerScore();
 });
+
+$('.bet').on('submit', function(e){
+    e.preventDefault();
+    var newBet = $('<p class="betAmount"></p>')
+    var input = $('.bet-amount').val();
+    (newBet).append(input);
+    $('.player-overall-score-box').append(newBet.val());
+    //input.text() = ""
+})
 
 var playerHand;
 var dealerHand;
@@ -47,14 +62,33 @@ function clearBoard(){
    for(var i=0; i<52; i++) {
     deck.push(i)
   };
-
 dealCards();
 };
 
+function stopGame(){
+  $('.playerSpot').empty();
+  $('.dealerSpot').empty();
+  $('.dealer-current-score-box').empty();
+  $('.player-current-score-box').empty();
+
+  //this represents empty array for playerHand
+  playerHand = [];
+  //this represents empty array for dealerHand
+  dealerHand = [];
+  playerValue = [];
+  dealerValue = [];
+
+  //this represents 1 deck of cards for shoe;
+  deck = [];
+   for(var i=0; i<52; i++) {
+    deck.push(i)
+  };
+}
+
 //function to shuffle an array
 function shuffle(o){
-  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-  return o;
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
 };
 
 function drawNewCard() {
@@ -104,10 +138,9 @@ function findSuit(newCard){
   var diamonds = $('<path d="M39.419,107.322 C29.928,122.904 19.033,137.607 7.076,151.385 C19.044,165.157 30.124,179.822 39.419,195.541 C48.715,179.822 59.794,165.157 71.763,151.385 C59.806,137.607 48.911,122.904 39.419,107.322 z" fill="#D40000" id="diamond"/>');
   var clubs = $('<path d="M151.143,108.151 C145.612,108.151 140.979,110.01 137.206,113.713 C133.432,117.416 131.549,121.823 131.549,126.932 C131.549,131.104 133.159,135.463 136.393,140.057 C133.591,137.722 130.798,136.338 125.487,136.338 C115.096,136.338 107.643,144.868 107.643,155.526 C107.643,166.827 115.891,175.432 126.893,175.432 C137.909,175.432 146.175,167.918 150.237,158.776 C150.049,166.229 148.917,172.127 146.831,176.463 C144.745,180.799 141.549,184.385 137.237,187.244 C134.331,189.166 129.096,190.854 121.549,192.307 L120.987,194.713 L151.143,194.713 L181.331,194.713 L180.768,192.307 C173.221,190.854 167.987,189.166 165.081,187.244 C160.768,184.385 157.573,180.799 155.487,176.463 C153.401,172.127 152.268,166.229 152.081,158.776 C156.143,167.918 164.409,175.432 175.424,175.432 C186.427,175.432 194.674,166.827 194.674,155.526 C194.674,144.868 187.222,136.338 176.831,136.338 C171.52,136.338 168.726,137.722 165.924,140.057 C169.159,135.463 170.768,131.104 170.768,126.932 C170.768,121.823 168.885,117.416 165.112,113.713 C161.338,110.01 156.674,108.151 151.143,108.151 z" fill="#000000" id="club"/>');
   var spades = $('<path d="M39.419,4.459 C38.201,9.521 36.326,14.068 33.794,18.053 C31.263,22.037 26.755,26.951 20.263,32.834 C13.771,38.717 9.654,43.224 7.919,46.365 C6.185,49.506 5.326,52.693 5.326,55.928 C5.326,60.428 6.826,64.178 9.826,67.178 C12.826,70.178 16.482,71.678 20.794,71.678 C28.514,71.678 34.485,66.041 38.419,59.896 C38.12,66.615 37.013,71.993 35.076,76.021 C32.99,80.357 29.796,83.945 25.482,86.803 C22.577,88.726 17.341,90.412 9.794,91.865 L9.232,94.271 L39.388,94.271 L69.576,94.271 L69.013,91.865 C61.466,90.412 56.23,88.726 53.326,86.803 C49.012,83.945 45.818,80.357 43.732,76.021 C41.797,71.999 40.689,66.632 40.388,59.928 C44.322,66.063 50.334,71.678 58.044,71.678 C62.357,71.678 66.013,70.178 69.013,67.178 C72.013,64.178 73.513,60.428 73.513,55.928 C73.513,52.693 72.654,49.506 70.919,46.365 C69.185,43.224 65.068,38.717 58.576,32.834 C52.083,26.951 47.576,22.037 45.044,18.053 C42.513,14.068 40.638,9.521 39.419,4.459 z" fill="#000000" id="spade"/>');
-  //var buffer = $('<g></g>').css('transform','scale(.2)');
+
   if (suit === 0){
     return hearts;
-    //return $(buffer).append(hearts);
   } else if (suit === 1) {
     return diamonds;
   } else if (suit === 2) {
@@ -115,7 +148,6 @@ function findSuit(newCard){
   } else {
     return spades;
   };
-
 };
 
 var playerValue = [];
@@ -135,7 +167,6 @@ function dealCards() {
   var cardDiv = $('<div class="dealerCard"></div>');
   $(cardDiv).append(drawNewCard());
   (dealerValue).push(sum);
-  //console.log(sum);
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
   // }, 2000);
@@ -153,7 +184,7 @@ function dealCards() {
   var cardDiv = $('<div class="dealerCard"></div>');
   $(cardDiv).append(drawNewCard());
   (dealerValue).push(sum);
-  //console.log(sum);
+  $(cardDiv).addClass('blank-card');
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
   console.log(dealerHand);
@@ -170,7 +201,6 @@ function playerHit() {
   $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
   playerHand.push(cardDiv.text());
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
-
 playerScore();
 };
 
@@ -178,74 +208,175 @@ function dealerHit() {
   var cardDiv = $('<div class="dealerCard"></div>');
   $(cardDiv).append(drawNewCard());
   (dealerValue).push(sum);
-  //console.log(sum);
   $('.dealerSpot').append(cardDiv);
   dealerHand.push(cardDiv.text());
   console.log(dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
-
 dealerScore();
 };
 
+var playerSum;
+var newArray
+var playerNewSum;
+var aceSum;
 
-function playerScore() {
-  var playerSum = 0;
-  $.each(playerValue, function(){
-    playerSum += this;
-  });
+function playerScore(){
+  playerSum = 0;
+  newArray = [];
+  playerNewSum = 0;
+  aceSum = -10
 
-  if (playerSum === 21) {
-    playerSum = " BlackJack!";
-    alert("You have Blackjack!");
+  for(var i = 0; i<playerValue.length; i++){
+    playerSum += playerValue[i];
+  // $.each(playerValue, function(){
+  //   playerSum += this;
+  // });
+
+    if (playerSum === 21) {
+      playerSum = "BlackJack!";
+      $('.dealerCard').removeClass('blank-card');
+      $('.player-current-score-box').empty();
+      $('.player-current-score-box').append(playerSum);
+      dealerScore()
+    //alert("You have Blackjack!");
+  } else if (playerSum < 21){
     $('.player-current-score-box').empty();
     $('.player-current-score-box').append(playerSum);
-    dealerScore();
-    $('.dealerCard').eq(0).show();//shows hidden dealer card
   } else if (playerSum > 21) {
-    playerSum = " Busted!";
-    alert("You busted");
-    $('.player-current-score-box').append(playerSum);
-    dealerScore();
-    $('.dealerCard').eq(0).show();//shows hidden dealer card
-  } else {
-    $('.player-current-score-box').empty();
-    $('.player-current-score-box').append(playerSum);
-  }
+        if (playerValue[i] === 11){
+          playerValue[i] = 1
+            $.each (playerValue, function(){
+            playerSum += this;
+            });
+            $('.player-current-score-box').empty();
+            $('.player-current-score-box').append(playerSum);
 
-};
+        //  })
+          //return playerSum;
+          //for(var j = 0; j<playerValue.length; j++){
+            //playerSum += playerValue[i];
+            // newArray.push(playerValue)
+            // $.each(newArray, function(){
+            // playerNewSum += this;
+            //   playerScore();
+              //$('.player-current-score-box').empty();
+              //$('.player-current-score-box').append(playerNewSum);
+//playerScore();
+            //});
+        //  }
+
+      } else if (playerValue[i] != 11){
+        playerSum = "Busted!";
+        $('.dealerCard').removeClass('blank-card');
+        $('.player-current-score-box').empty();
+        $('.player-current-score-box').append(playerSum);
+
+        dealerScore()
+            //winner();
+        }
+      };
+    };
+    };
+
+
+var dealerSum;
 
 function dealerScore(){
-  var dealerSum = 0;
+  dealerSum = 0;
   $.each(dealerValue, function(){
     dealerSum += this;
   });
 
-  if (dealerSum === 21) {
-    dealerSum = "BlackJack!";
-    $('.dealer-current-score-box').empty();
-    $('.dealer-current-score-box').append(dealerSum);
-  } else if (dealerSum > 21) {
-    dealerSum = "Busted!";
-    $('.dealer-current-score-box').empty();
-    $('.dealer-current-score-box').append(dealerSum);
+  if (playerSum === "BlackJack!" || playerSum === "Busted!"){
+    if (dealerSum === 21) {
+      dealerSum = "BlackJack!";
+      $('.dealerCard').removeClass('blank-card');
+      $('.dealer-current-score-box').empty();
+      $('.dealer-current-score-box').append(dealerSum);
+      winner();
+    } else {
+      $('.dealerCard').removeClass('blank-card');
+      $('.dealer-current-score-box').empty();
+      $('.dealer-current-score-box').append(dealerSum);
+      winner();
+    }
   } else if (dealerSum < 17){
-    dealerHit();
     $('.dealer-current-score-box').empty();
     $('.dealer-current-score-box').append(dealerSum);
-  }
+    dealerHit();
+  } else if (dealerSum < 21){
+    $('.dealer-current-score-box').empty();
+    $('.dealer-current-score-box').append(dealerSum);
+    winner();
+  } else if (dealerSum === 21) {
+    dealerSum = "BlackJack!";
+    $('.dealerCard').removeClass('blank-card');
+    $('.dealer-current-score-box').empty();
+    $('.dealer-current-score-box').append(dealerSum);
+    winner();
+  } else if (dealerSum > 21) {
+    for (var i = 0; i < dealerValue.length; i++) {
+      if (dealerValue[i] === 11){
+        dealerValue[i] = 1;
+        $.each(dealerValue, function(){
+          dealerSum += this;
+
+        });
+        $('.dealer-current-score-box').empty();
+        $('.dealer-current-score-box').append(dealerSum);
+        dealerScore();
+      } else {
+          dealerSum = "Busted!";
+          $('.dealerCard').removeClass('blank-card');
+          $('.dealer-current-score-box').empty();
+          $('.dealer-current-score-box').append(dealerSum);
+          winner();
+        };
+      };
+
+  };
+
 };
 
-// function winner() {
-//
-// }
+function winner() {
+  audioApplause.play();
+  if (playerSum === "Busted!"){
+    alert("Dealer wins!");
+    stopGame();
+  }
+  else if (dealerSum === "Busted!"){
+    alert("Player wins!");
+    stopGame();
+  }
+  else if ((dealerSum === "BlackJack!") && (playerSum === "BlackJack!")){
+    alert("Dealer wins!");
+    stopGame();
+  }
+  else if (dealerSum === "BlackJack!"){
+    alert("Dealer wins!");
+    stopGame();
+  }
+  else if (playerSum === "BlackJack!"){
+    alert("Player wins!");
+    stopGame();
+  }
+  else if (dealerSum > playerSum){
+    alert("Dealer wins!");
+    stopGame();
+  }
+  else if (playerSum > dealerSum){
+    alert("Player wins!");
+    stopGame();
+  }
+  else if ((dealerSum === "Busted!") && (playerSum === "Busted!")){
+    alert("You both busted!");
+    stopGame();
+  }
+  else if (dealerSum === playerSum){
+    alert("Tie!");
+    stopGame();
+  };
 
-
-
-
-
-
-
-
-
+};
 
 //});
