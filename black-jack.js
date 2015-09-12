@@ -25,18 +25,19 @@ $('.hit').on('click', function(){
 });
 
 $('.stand').on('click', function(){
+
   $('.dealerCard').removeClass('blank-card');
   playerScore();
   dealerScore();
 });
 
 $('.bet').on('submit', function(e){
-    e.preventDefault();
-    var newBet = $('<p class="betAmount"></p>')
-    var input = $('.bet-amount').val();
-    (newBet).append(input);
-    $('.player-overall-score-box').append(newBet.val());
-    //input.text() = ""
+  e.preventDefault();
+  var newBet = $('<p class="betAmount"></p>')
+  var input = $('.bet-amount').val();
+  (newBet).append(input);
+  $('.player-overall-score-box').append(newBet.val());
+  //input.text() = ""
 })
 
 var playerHand;
@@ -59,10 +60,10 @@ function clearBoard(){
 
   //this represents 1 deck of cards for shoe;
   deck = [];
-   for(var i=0; i<52; i++) {
+  for(var i=0; i<52; i++) {
     deck.push(i)
   };
-dealCards();
+  dealCards();
 };
 
 function stopGame(){
@@ -80,15 +81,15 @@ function stopGame(){
 
   //this represents 1 deck of cards for shoe;
   deck = [];
-   for(var i=0; i<52; i++) {
+  for(var i=0; i<52; i++) {
     deck.push(i)
   };
 }
 
 //function to shuffle an array
 function shuffle(o){
-    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
 };
 
 function drawNewCard() {
@@ -112,23 +113,26 @@ function findValue(newCard) {
   var queen = "Q";
   var king = "K";
 
-  if (value === 1){
-    sum = 11;
-    return ace;
-  } else if (value === 11) {
-      sum = 10;
-      return jack;
+  if (value === 11) {
+    sum = 10;
+    return jack;
   } else if (value === 12) {
-      sum = 10;
-      return queen;
+    sum = 10;
+    return queen;
   } else if (value === 0){
-      sum = 10;
-      return king;
+    sum = 10;
+    return king;
+  } else if ((value === 1) && (sum > 21)){
+    sum = 1
+    return ace;
+  } else if ((value === 1) && (sum < 21)){
+    sum = 11
+    return ace;
   } else {
-      sum = value;
-      return value;
-  }
+    sum = value;
+    return value;
 };
+  };
 
 //function to determine the card suit
 function findSuit(newCard){
@@ -191,7 +195,7 @@ function dealCards() {
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
   // }, 4000);
 
-playerScore();
+  playerScore();
 };
 
 function playerHit() {
@@ -201,7 +205,7 @@ function playerHit() {
   $('.playerSpot').append(cardDiv);//adds new card from deck to player 1 card div
   playerHand.push(cardDiv.text());
   $('.playerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
-playerScore();
+  playerScore();
 };
 
 function dealerHit() {
@@ -212,7 +216,7 @@ function dealerHit() {
   dealerHand.push(cardDiv.text());
   console.log(dealerHand);
   $('.dealerCard').each(function(i,e) { $(e).html($(e).html()); })//hack to make SVG work
-dealerScore();
+  dealerScore();
 };
 
 var playerSum;
@@ -224,13 +228,12 @@ function playerScore(){
   playerSum = 0;
   newArray = [];
   playerNewSum = 0;
-  aceSum = -10
 
   for(var i = 0; i<playerValue.length; i++){
     playerSum += playerValue[i];
-  // $.each(playerValue, function(){
-  //   playerSum += this;
-  // });
+    // $.each(playerValue, function(){
+    //   playerSum += this;
+    // });
 
     if (playerSum === 21) {
       playerSum = "BlackJack!";
@@ -238,45 +241,32 @@ function playerScore(){
       $('.player-current-score-box').empty();
       $('.player-current-score-box').append(playerSum);
       dealerScore()
-    //alert("You have Blackjack!");
-  } else if (playerSum < 21){
-    $('.player-current-score-box').empty();
-    $('.player-current-score-box').append(playerSum);
-  } else if (playerSum > 21) {
-        if (playerValue[i] === 11){
-          playerValue[i] = 1
-            $.each (playerValue, function(){
-            playerSum += this;
-            });
-            $('.player-current-score-box').empty();
-            $('.player-current-score-box').append(playerSum);
-
-        //  })
-          //return playerSum;
-          //for(var j = 0; j<playerValue.length; j++){
-            //playerSum += playerValue[i];
-            // newArray.push(playerValue)
-            // $.each(newArray, function(){
-            // playerNewSum += this;
-            //   playerScore();
-              //$('.player-current-score-box').empty();
-              //$('.player-current-score-box').append(playerNewSum);
-//playerScore();
-            //});
-        //  }
-
-      } else if (playerValue[i] != 11){
-        playerSum = "Busted!";
-        $('.dealerCard').removeClass('blank-card');
-        $('.player-current-score-box').empty();
-        $('.player-current-score-box').append(playerSum);
+      //alert("You have Blackjack!");
+    } else if (playerSum < 21){
+      $('.player-current-score-box').empty();
+      $('.player-current-score-box').append(playerSum);
+    } else if (playerSum > 21) {
+        // if (playerValue[i] === 11){
+        //     playerValue[i] = 1;
+        //     console.log(playerValue[i])
+        //     $.each(playerValue, function(){
+        //       playerSum += this;
+        //
+        //   $('.player-current-score-box').empty();
+        //   $('.player-current-score-box').append(playerSum);
+        // })
+        // } else if (playerValue[i] != 11){
+          playerSum = "Busted!";
+          $('.dealerCard').removeClass('blank-card');
+          $('.player-current-score-box').empty();
+          $('.player-current-score-box').append(playerSum);
 
         dealerScore()
-            //winner();
-        }
-      };
+        //winner();
+      }
     };
-    };
+  };
+// };
 
 
 var dealerSum;
@@ -326,13 +316,13 @@ function dealerScore(){
         $('.dealer-current-score-box').append(dealerSum);
         dealerScore();
       } else {
-          dealerSum = "Busted!";
-          $('.dealerCard').removeClass('blank-card');
-          $('.dealer-current-score-box').empty();
-          $('.dealer-current-score-box').append(dealerSum);
-          winner();
-        };
+        dealerSum = "Busted!";
+        $('.dealerCard').removeClass('blank-card');
+        $('.dealer-current-score-box').empty();
+        $('.dealer-current-score-box').append(dealerSum);
+        winner();
       };
+    };
 
   };
 
@@ -378,5 +368,3 @@ function winner() {
   };
 
 };
-
-//});
