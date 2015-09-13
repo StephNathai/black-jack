@@ -1,14 +1,14 @@
 $('.start').on('click', function(){
   //audioShuffle.play();
-  $(this).remove();
+  $(this).hide();
+  $('.newGame').hide();
   $('.hidden').animate({opacity: 1});
-  clearBoard();
   newGame();
 
 });
 
 $('.newGame').on('click', function(){
-  clearBoard();
+  $(this).hide();
   newGame();
 });
 
@@ -33,11 +33,14 @@ function clearBoard(){
 
 // create a blank deck
 //function createDeck(){
+
+var newDeck = function() {
   var deck = [];
   for(var i=0; i<52; i++) {
     deck.push(i)
   };
-//};
+  return deck;
+};
 
 //function to shuffle the deck
 function shuffle(o){
@@ -45,12 +48,14 @@ function shuffle(o){
   return o;
 };
 
-var shuffleDeck = shuffle(deck);
+var shuffleDeck = shuffle(newDeck());
 
-// function pickRandomCard() { //function to create random card btwn 1-52
-//   var randomCard = deck[Math.floor(Math.random()*52)]; // create formula to pick random card
-//   console.log(randomCard); //console.log random card
-// };
+var reshuffle = function(deck) {
+  if (shuffleDeck.length < 5) {
+    shuffleDeck = shuffle(newDeck());
+  };
+};
+
 
 // find suit for card
 function findSuit(card){ // find suit of card
@@ -184,6 +189,7 @@ function dealerHit() {
 dealerScore();
 }
 
+var playerSum;
 
 function playerScore(){
     if (playerValue() === 21){
@@ -205,7 +211,6 @@ dealerScore()
 };
 
 var dealerSum;
-var playerSum;
 
 function dealerScore(){
   if (playerValue() === 21 || playerValue() > 21){
@@ -249,6 +254,7 @@ winner()
 };
 
 function winner() {
+  $('.win').animate({opacity: 1});
   //audioApplause.play();
   if (parseInt($('.player-current-score-box').text()) > 21){
     alert("Dealer wins!");
@@ -306,23 +312,26 @@ function stopGame(){
   $('.dealerSpot').empty();
   $('.dealer-current-score-box').empty();
   $('.player-current-score-box').empty();
+  $('.hit').hide();
+  $('.stand').hide();
+  $('.newGame').show();
 
   //this represents empty array for playerHand
   playerHand = [];
   //this represents empty array for dealerHand
   dealerHand = [];
 
-  //this represents 1 deck of cards for shoe;
-  deck = [];
-  for(var i=0; i<52; i++) {
-    deck.push(i)
-  };
 }
 
+
 function newGame() {
-    stopGame();
-    dealPlayer();
-    dealDealer();
-    dealPlayer();
-    dealDealerBlank();
+  clearBoard();
+  $('.hit').show();
+  $('.stand').show();
+  reshuffle();
+  dealPlayer();
+  dealDealer();
+  dealDealerBlank();
+  dealPlayer();
+
 };
