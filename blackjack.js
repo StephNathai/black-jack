@@ -1,5 +1,9 @@
+var audioShuffle = $("#shuffle-sound")[0];
+var audioDeal = $("#deal-card")[0];
+var audioApplause = $("#applause")[0];
+
 $('.start').on('click', function(){
-  //audioShuffle.play();
+  audioShuffle.play();
   $(this).hide();
   $('.newGame').hide();
   $('.hidden').animate({opacity: 1});
@@ -8,12 +12,13 @@ $('.start').on('click', function(){
 });
 
 $('.newGame').on('click', function(){
+  audioShuffle.play()
   $(this).hide();
   newGame();
 });
 
 $('.hit').on('click', function(){
-  //audioDeal.play();
+  audioDeal.play();
   dealPlayer();
 });
 
@@ -32,8 +37,6 @@ function clearBoard(){
 };
 
 // create a blank deck
-//function createDeck(){
-
 var newDeck = function() {
   var deck = [];
   for(var i=0; i<52; i++) {
@@ -246,7 +249,7 @@ winner();
     $('.dealer-current-score-box').empty();
     $('.dealer-current-score-box').append(dealerSum);
 winner()
-  } else if ((dealerValue() < 17) && (playerValue < 17)){
+  } else if ((dealerValue < 17) && (playerValue < 17)){
     $('.dealer-current-score-box').empty();
     $('.dealer-current-score-box').text(dealerValue());
 winner()
@@ -255,7 +258,7 @@ winner()
 
 function winner() {
   $('.win').animate({opacity: 1});
-  //audioApplause.play();
+  audioApplause.play();
   if (parseInt($('.player-current-score-box').text()) > 21){
     alert("Dealer wins!");
     stopGame();
